@@ -1,8 +1,8 @@
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -28,13 +28,19 @@ public class SizeComplex {
         try {
         	
         	Pattern pattern = Pattern.compile("\"([^\"]*)\"");
-            fileLocation = "D:\\Eclipse Workspace\\TransportService\\src\\transportservice\\Dress_delivery.java";
+            fileLocation = "D:\\Eclipse Workspace\\SPM tool\\src\\MyException.java";
             FileReader filereader = new FileReader(fileLocation);
             BufferedReader bufferedreader = new BufferedReader(filereader);
             line = bufferedreader.readLine();
+            Matcher m = pattern.matcher(line);
+            
             while (line != null) {
                 StringTokenizer stringToken = new StringTokenizer(line);
                 complexity = 0;
+                            
+                if(m.find()) {
+                	complexity++; //complexity of text inside a pair of double quotes
+                }            
                 
                 while (stringToken.hasMoreTokens()) {
                     words = stringToken.nextToken();
